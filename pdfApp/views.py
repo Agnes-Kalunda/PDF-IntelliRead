@@ -43,3 +43,29 @@ def upload_pdf(request):
     else:
         form = PDFUploadForm()
     return render(request, 'upload.html', {'form': form})
+
+
+
+@csrf_exempt
+def ask_question(request):
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        pdf_text = request.session.get('pdf_text', '')
+        if question and pdf_text:
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "You are an assistant."},
+                        {"role": "user", "content": f"Based on the following information from the PDF: {pdf_text}. {question}"}
+                    ],
+                    max_tokens=150,
+                    temperature=0.5
+                )
+                answer = response['choices'][0]['message']['content'].strip()
+                return JsonResponse({'answer': answer})
+            except Exception as e:
+                return JsonResponse({'error': str(e)}, status=500)
+    elif request.method == 'GET':
+        return render(request, 'ask.html')
+    return HttpResponseBadRequest('Invalid request method')
