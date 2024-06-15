@@ -28,3 +28,18 @@ def extract_text_from_pdf(file_path):
     except Exception as e:
         print(f"Error reading PDF file: {e}")
     return text
+
+def upload_pdf(request):
+    if request.method == 'POST':
+        form = PDFUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = request.FILES['pdf_file']
+            fs = FileSystemStorage()
+            filename = fs.save(file.name, file)
+            file_path = fs.path(filename)
+            pdf_text = extract_text_from_pdf(file_path)
+            request.session['pdf_text'] = pdf_text  # Store PDF text in session
+            return redirect('ask_question')
+    else:
+        form = PDFUploadForm()
+    return render(request, 'upload.html', {'form': form})
