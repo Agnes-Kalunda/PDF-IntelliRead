@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,7 +128,6 @@
             border-radius: 50px;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            
         }
 
         /* Button hover effect */
@@ -137,7 +135,6 @@
             background-color: #0056b3; 
         }
 
-        
         .three {
             display: grid;
             grid-template-columns: 1fr 2fr; /* Two columns, now the second column is twice the width of the first */
@@ -146,6 +143,7 @@
             background-color: lightblue; 
             opacity: 0;
             transition: opacity 1s ease; 
+            margin-bottom: 0; /* Remove bottom margin */
         }
 
         /* Make the image fill the entire column */
@@ -153,9 +151,29 @@
             width: 100%;
             height: 70%;
             object-fit: cover;
+            border-radius: 30px;
         }
 
-        
+        .two-container {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto; /* Adjust to fit content */
+            padding-top: 0; 
+            margin-top: 0; 
+        }
+
+        .two {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%; 
+            max-width: 600px; /* Max width to avoid stretching too much on large screens */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
     </style>
 </head>
 <body>
@@ -195,7 +213,7 @@
         </div>
     </section>
 
-    <!-- Three-column section with swapped columns -->
+
     <section class="three">
         <div>
             <!-- Second column content -->
@@ -203,8 +221,21 @@
             <p>Nulla facilisi. Suspendisse potenti. Fusce euismod, ligula vel dictum tincidunt, sapien arcu vestibulum lorem, sit amet commodo quam est id dui.</p>
         </div>
         <div>
-            
-            <img src="{% static 'images/profilee.png' %}" alt="Logo" class="full-height-img">
+            <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
+        </div>
+    </section>
+    
+    <!-- Two-row section inside a box -->
+    <section class="two-container">
+        <div class="two">
+            <div class="container mx-auto px-4 py-8 text-center">
+                <h1 class="text-2xl  font-bold mb-4">Meet PDFIntelliRead</h1>
+                <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
+            </div>
+            <div class="container mx-auto px-4 py-8 text-center">
+                <h2 class="text-2xl font-semibold mb-4">Second Row</h2>
+                <p>This is the second row. You can add more content here.</p>
+            </div>
         </div>
     </section>
 
