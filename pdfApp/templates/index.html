@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,17 @@
     <title>AggieAI</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        /* Basic reset and body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Video background container */
         .video-background {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -17,106 +27,199 @@
             overflow: hidden;
         }
 
+        /* Ensure the video covers the entire section */
         .video-background iframe {
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            object-fit: cover;
         }
 
+        /* Navbar styling */
         .navbar {
             position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
+            width: 100%;
+            margin-top: 2%;
+            z-index: 10;
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
-            z-index: 10;
-            margin-top: 3%;
             border-radius: 50px; /* Make the edges of the navbar circular */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 10px 20px; /* Adjust padding as needed */
+            transition: background-color 0.5s ease; /* Transition for background color change */
         }
 
-        #hero {
-            position: relative; /* Ensure content is placed on top of video */
-            background-color: #f3f4f6;
+        /* Navbar content and layout */
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+        }
+
+        /* Logo image styling */
+        .logo img {
+            width: 60px; 
+            height: 60px;
+            border-radius: 50%; /* Make the logo image circular */
+            object-fit: cover;
+        }
+
+        /* Navbar links styling */
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Navbar link styling */
+        .navbar-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        /* Navbar link hover effect */
+        .navbar-links a:hover {
+            color: #007bff; /* Adjust hover color */
+        }
+
+        /* Hero section styling */
+        .hero {
             padding: 100px 0;
-            margin-top: 15%; /* Adjust vertical spacing as needed */
-        }
-
-        #hero .container {
-            position: relative; /* Ensure content is placed on top of video */
-        }
-
-        #header-section {
-            background-color: #333333;
-            color: #ffffff;
             text-align: center;
-            padding: 100px 0;
+            color: #fff;
+            padding-top: 20%;
         }
 
-        #main-content-section h1 {
-            margin-top: 40px; /* Adjust this value as needed */
+        /* Hero content container */
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
+
+        /* Hero title styling */
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Hero subtitle styling */
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        /* Button hover effect */
+        .btn:hover {
+            background-color: #0056b3; 
+        }
+
+        
+        .three {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Two columns, now the second column is twice the width of the first */
+            gap: 20px; 
+            padding: 40px;
+            background-color: lightblue; 
+            opacity: 0;
+            transition: opacity 1s ease; 
+        }
+
+        /* Make the image fill the entire column */
+        .full-height-img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <!-- Navbar Section with Video Background -->
-    <section id="navbar-section" class="relative">
-        <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/VI1g2lY4LRg?autoplay=1&mute=1&loop=1&playlist=VI1g2lY4LRg&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    
-        <!-- Navbar -->
-        <nav class="navbar w-full max-w-4xl mx-auto rounded-lg shadow-lg">
-            <div class="flex justify-between items-center p-4">
-                <!-- Logo and Title -->
-                <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-300 flex items-center justify-center">
-                        <img src="{% static 'images/profilee.png' %}" alt="prof" class="w-full h-full object-cover">
-                    </div>
-                    <span class="ml-2 text-gray-700 font-semibold text-lg sm:text-xl md:text-2xl">AggieAI</span>
-                </div>
-                <!-- Nav Links -->
-                <ul class="flex justify-center space-x-4 sm:space-x-8">
-                    <li><a href="#" class="text-gray-700 font-semibold hover:text-blue-500">About</a></li>
-                    <li><a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact</a></li>
-                    <li><a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Date</a></li>
-                </ul>
-                <!-- Button -->
-                <div>
-                    <a href="#" class="px-3 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 text-sm sm:text-base">Button</a>
-                </div>
-            </div>
-        </nav>
-    </section>
+    <!-- Video background section -->
+    <div class="video-background">
+        <iframe src="https://www.youtube.com/embed/VI1g2lY4LRg?autoplay=1&mute=1&loop=1&playlist=VI1g2lY4LRg&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
-    <!-- Hero Section with Video Background -->
-    <section id="hero">
-        <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/VI1g2lY4LRg?autoplay=1&mute=1&loop=1&playlist=VI1g2lY4LRg&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-4 mt-20">Welcome to Our Landing Page</h1>
-                <p class="text-lg sm:text-xl text-gray-600 mb-8">We are glad to have you here. Explore our website to know more.</p>
-                <a href="#" class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 text-base">Learn More</a>
+    <!-- Navbar section -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <!-- Logo and title -->
+            <div class="logo">
+                <img src="{% static 'images/profilee.png' %}" alt="Logo">
+                <span class="ml-2 text-gray-700 font-semibold text-lg sm:text-xl md:text-2xl">AggieAI</span>
             </div>
+            <!-- Navbar links -->
+            <div class="navbar-links">
+                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact</a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Date</a>
+            </div>
+            <!-- Button -->
+            <div>
+                <a href="#" class="btn">Button</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Our Landing Page</h1>
+            <p class="hero-subtitle">We are glad to have you here. Explore our website to know more.</p>
+            <a href="#" class="btn">Learn More</a>
         </div>
     </section>
 
-    <!-- Header Section -->
-    <section id="header-section">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">PDF Wizard</h1>
-                <p class="text-lg sm:text-xl mb-4">Unleash the Magic of AI: Transforming PDF Reading into an Epic Adventure!</p>
-                <a href="https://mobiri.se" class="btn btn-white-outline">Explore Now</a>
-            </div>
+    <!-- Three-column section with swapped columns -->
+    <section class="three">
+        <div>
+            <!-- Second column content -->
+            <h2 class="text-2xl font-semibold mb-4">Second Column</h2>
+            <p>Nulla facilisi. Suspendisse potenti. Fusce euismod, ligula vel dictum tincidunt, sapien arcu vestibulum lorem, sit amet commodo quam est id dui.</p>
+        </div>
+        <div>
+            
+            <img src="{% static 'images/profilee.png' %}" alt="Logo" class="full-height-img">
         </div>
     </section>
 
+    <script>
+        // JavaScript to handle the fade-in effect on scroll
+        document.addEventListener('scroll', function() {
+            var threeSection = document.querySelector('.three');
+            var scrollPosition = window.scrollY;
+
+            if (scrollPosition > 200) { 
+                threeSection.style.opacity = '1';
+            } else {
+                threeSection.style.opacity = '0';
+            }
+        });
+    </script>
 </body>
 </html>
