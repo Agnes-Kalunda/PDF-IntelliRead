@@ -143,13 +143,13 @@
             background-color: lightblue; 
             opacity: 0;
             transition: opacity 1s ease; 
-            margin-bottom: 0; /* Remove bottom margin */
+            
         }
 
         /* Make the image fill the entire column */
         .full-height-img {
             width: 100%;
-            height: 70%;
+            height: 100%;
             object-fit: cover;
             border-radius: 30px;
         }
@@ -162,8 +162,8 @@
             justify-content: center;
             align-items: center;
             height: auto; /* Adjust to fit content */
-            padding-top: 0; 
-            margin-top: 0; 
+            padding-top: 3%; 
+        
         }
 
         .two {
@@ -174,6 +174,58 @@
             max-width: 600px; /* Max width to avoid stretching too much on large screens */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
+
+        .loop-container {
+    display: flex;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .gallery10{
+    background-color: lightblue;
+  }
+  
+  .card {
+    width: 200px; /* Adjust card width as needed */
+    height: 300px; /* Adjust card height as needed */
+    transition: transform 0.5s ease-out;
+}
+
+.card .relative {
+    overflow: hidden;
+}
+
+.card .absolute {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.card .transform.translate-x-0 {
+    transform: translateX(0);
+}
+
+.card.out-of-view {
+    transform: translateX(-200%); /* Move card off screen to the left */
+    opacity: 0; /* Ensure opacity is set to fully transparent */
+    pointer-events: none; /* Disable pointer events for hidden cards */
+}
+
+
     </style>
 </head>
 <body>
@@ -214,43 +266,147 @@
     </section>
 
 
+   
+
+
     <section class="three">
         <div>
             <!-- Second column content -->
-            <h2 class="text-2xl font-semibold mb-4">Second Column</h2>
+            <h2 class="text-4xl font-extrabold mb-4">PDF IntelliRead</h2>
             <p>Nulla facilisi. Suspendisse potenti. Fusce euismod, ligula vel dictum tincidunt, sapien arcu vestibulum lorem, sit amet commodo quam est id dui.</p>
         </div>
         <div>
             <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
         </div>
     </section>
+
+    <section class="gallery10" id="features-61-ufN3GLYDdB">
+        <div class="container-fluid mx-auto px-4 overflow-hidden relative">
+          <div class="loop-container flex flex-nowrap whitespace-nowrap">
+            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0 mr-10">
+              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
+            </div>
+            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0 mr-10">
+              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
+            </div>
+            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0">
+              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
     
     <!-- Two-row section inside a box -->
     <section class="two-container">
         <div class="two">
             <div class="container mx-auto px-4 py-8 text-center">
-                <h1 class="text-2xl  font-bold mb-4">Meet PDFIntelliRead</h1>
+                <h1 class="text-4xl font-extrabold mb-4">Meet PDFIntelliRead</h1>
                 <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
             </div>
+
             <div class="container mx-auto px-4 py-8 text-center">
-                <h2 class="text-2xl font-semibold mb-4">Second Row</h2>
-                <p>This is the second row. You can add more content here.</p>
+                <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
             </div>
         </div>
     </section>
+    
+    <section class="bg-blue-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Enchanted AI Creations</h2>
+            <div class="flex justify-center items-center overflow-hidden">
+                <div class="card relative overflow-hidden transform transition duration-500">
+                    <img src="https://r.mobirisesite.com/533449/assets/images/photo-1601132359864-c974e79890ac.jpeg" alt="Card Image" class="w-full h-64 object-cover">
+                </div>
+                <div class="card relative overflow-hidden transform transition duration-500">
+                    <img src="https://r.mobirisesite.com/533449/assets/images/photo-1569396116180-210c182bedb8.jpeg" alt="Card Image" class="w-full h-64 object-cover">
+                </div>
+                <div class="card relative overflow-hidden transform transition duration-500">
+                    <img src="https://r.mobirisesite.com/533449/assets/images/photo-1646583288948-24548aedffd8.jpeg" alt="Card Image" class="w-full h-64 object-cover">
+                </div>
+                <div class="card relative overflow-hidden transform transition duration-500">
+                    <img src="https://r.mobirisesite.com/533449/assets/images/photo-1605810230434-7631ac76ec81.jpeg" alt="Card Image" class="w-full h-64 object-cover">
+                </div>
+                <div class="card relative overflow-hidden transform transition duration-500">
+                    <img src="https://via.placeholder.com/300" alt="Card Image" class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
 
-    <script>
-        // JavaScript to handle the fade-in effect on scroll
-        document.addEventListener('scroll', function() {
-            var threeSection = document.querySelector('.three');
-            var scrollPosition = window.scrollY;
 
-            if (scrollPosition > 200) { 
-                threeSection.style.opacity = '1';
+
+
+
+
+        <section class="two-container">
+        <div class="two">
+            <div class="container mx-auto px-4 py-8 text-center">
+                <h1 class="text-4xl font-extrabold mb-4">Meet PDFIntelliRead</h1>
+                <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
+            </div>
+
+            <div class="container mx-auto px-4 py-8 text-center">
+                <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+
+      
+      
+
+<script>
+    // JavaScript to handle the fade-in effect on scroll for .three section
+    document.addEventListener('scroll', function() {
+        var threeSection = document.querySelector('.three');
+        var scrollPosition = window.scrollY;
+
+        if (scrollPosition > 200) { 
+            threeSection.style.opacity = '1';
+        } else {
+            threeSection.style.opacity = '0';
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.card');
+
+    function handleScroll() {
+        const scrollPosition = window.scrollY;
+
+        cards.forEach((card, index) => {
+            const cardTop = card.getBoundingClientRect().top + window.scrollY;
+            const cardBottom = cardTop + card.clientHeight;
+
+            if (scrollPosition + window.innerHeight > cardTop && scrollPosition < cardBottom) {
+                card.style.transform = 'translateX(0)';
+            } else if (scrollPosition > cardTop || scrollPosition + window.innerHeight < cardBottom) {
+                const offset = ((scrollPosition - cardTop) / window.innerHeight) * 200;
+                card.style.transform = `translateX(${offset}px)`;
             } else {
-                threeSection.style.opacity = '0';
+                card.style.transform = 'translateX(0)';
             }
         });
-    </script>
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+});
+
+
+
+
+</script>
+
 </body>
 </html>
