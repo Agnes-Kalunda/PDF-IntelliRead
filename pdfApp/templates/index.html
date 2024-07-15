@@ -255,11 +255,14 @@
         border-radius: 10px;
         position: relative;
         overflow: hidden;
+        width: 300px;
+        height: 350px;
         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
     }
 
     .box img {
         width: 100%;
+        height: 100%;
         border-radius: 10px;
         display: block;
         transition: transform 0.5s;
@@ -284,8 +287,9 @@
         transition: height 0.5s;
     }
 
-    .overlay h3 {
-        font-weight: 500;
+    .overlay h2 {
+      font-weight: bold;
+        
         margin-bottom: 5px;
         margin-top: 80%;
         font-size: 30px;
@@ -353,36 +357,36 @@
   </section>
 
   <section style="background-color: white; color: black;">
-    <div style="color: black;">
-      <h1>Our Blog</h1>
+    <div style="display: flex; justify-content: center; margin-top: 3%; margin-bottom: 0%;">
+      <h1 class="text-4xl font-extrabold mb-4">Features</h1>
     </div>
     <div id="card-area">
         <div class="wrapper">
             <div class="box-area">
                 <div class="box">
-                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <img src="{% static 'images/book.jpeg' %}" alt="Logo" class="">
                     <div class="overlay">
-                        <h3>Hello</h3>
+                        <h2>AI-Driven</h2>
                         <p>Lorem ipsum lorem ipsum</p>
-                        <a href="#">Check now</a>
+                        
                     </div>
                 </div>
 
                 <div class="box">
-                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <img  src="{% static 'images/pixel.jpg' %}" alt="Logo" class="">
                     <div class="overlay">
-                        <h3>Hello</h3>
+                        <h2>User-Friendly</h2>
                         <p>Lorem ipsum lorem ipsum</p>
-                        <a href="#">Check now</a>
+                        
                     </div>
                 </div>
 
                 <div class="box">
-                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <img  src="{% static 'images/down4.jpeg' %}" alt="Logo" class="">
                     <div class="overlay">
-                        <h3>Hello</h3>
+                        <h2>Free</h2>
                         <p>Lorem ipsum lorem ipsum</p>
-                        <a href="#">Check now</a>
+                        
                     </div>
                 </div>
             </div>
@@ -393,6 +397,20 @@
 
 
     
+
+<section style="position: relative; width: 100%; height: 100vh; overflow: hidden;">
+  <iframe 
+      src="https://www.youtube.com/embed/s9xk77X4m5c?autoplay=1&mute=1&loop=1&playlist=s9xk77X4m5c" 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;" 
+      frameborder="0" 
+      allow="autoplay; fullscreen" 
+      allowfullscreen>
+  </iframe>
+  <!-- <div style="position: relative; z-index: 1; color: white; text-align: center; padding-top: 50vh; background: rgba(0, 0, 0, 0.5);">
+      <h1>Ex Machina</h1>
+      <p>A 2014 science fiction psychological thriller film written and directed by Alex Garland.</p>
+  </div> -->
+</section>
 
 
 
