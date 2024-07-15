@@ -15,23 +15,16 @@
             overflow-x: hidden;
         }
 
-        /* Video background container */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+   
 
-        /* Ensure the video covers the entire section */
-        .video-background iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .background-container {
+    background-image: url('{% static "images/pixel.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh; /* Ensures it covers the viewport height */
+}
 
         /* Navbar styling */
         .navbar {
@@ -122,7 +115,7 @@
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: black;
             margin-bottom: 2%;
             color: #fff;
             font-weight: 600;
@@ -156,7 +149,7 @@
         }
 
         span{
-            color: #007bff;
+            color: black;
         }
 
         .two-container {
@@ -208,92 +201,200 @@
     background-color: lightblue;
   }
 
+  .swiper-button-prev:after,
+        .swiper-rtl .swiper-button-next:after {
+            content: '' !important;
+        }
+
+        .swiper-button-next:after,
+        .swiper-rtl .swiper-button-prev:after {
+            content: '' !important;
+        }
+
+        .swiper-button-next svg,
+        .swiper-button-prev svg {
+            width: 24px !important;
+            height: 24px !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            position: relative !important;
+        }
+
+        .swiper-slide.swiper-slide-active {
+            --tw-border-opacity: 1 !important;
+            border-color: rgb(79 70 229 / var(--tw-border-opacity)) !important;
+        }
+
+        .swiper-slide.swiper-slide-active>.swiper-slide-active\:text-indigo-600 {
+            --tw-text-opacity: 1;
+            color: rgb(79 70 229 / var(--tw-text-opacity));
+        }
+
+        .swiper-slide.swiper-slide-active>.flex .grid .swiper-slide-active\:text-indigo-600 {
+            --tw-text-opacity: 1;
+            color: rgb(79 70 229 / var(--tw-text-opacity));
+        }
+        .wrapper {
+        padding: 10px 10%;
+    }
+
+    #card-area {
+        padding: 50px 0;
+    }
+
+    .box-area {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 40px;
+        margin-top: 50px;
+    }
+
+    .box {
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .box img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+        transition: transform 0.5s;
+    }
+
+    .overlay {
+        height: 0;
+        width: 100%;
+        background: linear-gradient(transparent, #1c1c1c 58%);
+        border-radius: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        font-size: 14px;
+        transition: height 0.5s;
+    }
+
+    .overlay h3 {
+        font-weight: 500;
+        margin-bottom: 5px;
+        margin-top: 80%;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+    .box:hover img {
+        transform: scale(1.2);
+    }
+
+    .box:hover .overlay {
+        height: 100%;
+    }
+
     </style>
 </head>
 <body>
 
-    <!-- Video background section -->
-    <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/VI1g2lY4LRg?autoplay=1&mute=1&loop=1&playlist=VI1g2lY4LRg&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+ 
 
     <!-- Navbar section -->
-    <nav class="navbar">
-        <div class="navbar-content">
-            <!-- Logo and title -->
-            <div class="logo">
-                <img src="{% static 'images/profilee.png' %}" alt="Logo">
-                <span class="ml-2 text-gray-700 font-semibold text-lg sm:text-xl md:text-2xl">AggieAI</span>
-            </div>
-            <!-- Navbar links -->
-            <div class="navbar-links">
-                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
-                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact</a>
-                <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Date</a>
-            </div>
-            <!-- Button -->
-            <div>
-                <a href="#" class="btn">Button</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to <span>PDFIntelliRead</span></h1>
-            <p class="hero-subtitle">Explore the power of PDF intelligence.</p>
-            <a href="#" class="btn">Try it</a>
-        </div>
-    </section>
-
-
-   
-
-
-    <section class="three">
-        <div>
-            <!-- Second column content -->
-            <h2 class="text-4xl font-extrabold mb-4">PDF IntelliRead</h2>
-            <p>Nulla facilisi. Suspendisse potenti. Fusce euismod, ligula vel dictum tincidunt, sapien arcu vestibulum lorem, sit amet commodo quam est id dui.</p>
-        </div>
-        <div>
-            <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
-        </div>
-    </section>
-
-    <section class="gallery10" id="features-61-ufN3GLYDdB">
-        <div class="container-fluid mx-auto px-4 overflow-hidden relative">
-          <div class="loop-container flex flex-nowrap whitespace-nowrap">
-            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0 mr-10">
-              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
-            </div>
-            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0 mr-10">
-              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
-            </div>
-            <div class="marquee text-4xl md:text-6xl font-bold mb-4 md:mb-0">
-              ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes ☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes
-            </div>
+    <div class="background-container">
+      <nav class="navbar">
+          <div class="navbar-content">
+              <!-- Logo and title -->
+              <div class="logo">
+                  <img src="{% static 'images/profilee.png' %}" alt="Logo">
+                  <span class="ml-2 text-gray-700 font-semibold text-lg sm:text-xl md:text-2xl">AggieAI</span>
+              </div>
+              <!-- Navbar links -->
+              <div class="navbar-links">
+                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
+                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact</a>
+                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Date</a>
+              </div>
+              <!-- Button -->
+              <div>
+                  <a href="#" class="btn">Button</a>
+              </div>
           </div>
-        </div>
+      </nav>
+  
+      <!-- Hero section -->
+      <section class="hero">
+          <div class="hero-content">
+              <h1 class="hero-title">Welcome to <span>PDFIntelliRead</span></h1>
+              <p class="hero-subtitle">Explore the power of PDF intelligence.</p>
+              <a href="#" class="btn">Try it</a>
+          </div>
       </section>
+  </div>
+  
+
+    <section class="two-container">
+      <div class="two">
+          <div class="container mx-auto px-4 py-8 text-center">
+              <h1 class="text-4xl font-extrabold mb-4">Meet <div style="color: green;">PDFIntelliRead</div></h1>
+              <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
+          </div>
+
+          <div class="container mx-auto px-4 py-8 text-center">
+              <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
+          </div>
+      </div>
+  </section>
+
+  <section style="background-color: black; color: white;">
+    <div id="card-area">
+        <div class="wrapper">
+            <div class="box-area">
+                <div class="box">
+                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <div class="overlay">
+                        <h3>Hello</h3>
+                        <p>Lorem ipsum lorem ipsum</p>
+                        <a href="#">Check now</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <div class="overlay">
+                        <h3>Hello</h3>
+                        <p>Lorem ipsum lorem ipsum</p>
+                        <a href="#">Check now</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{% static 'images/one.png' %}" alt="Logo" class="">
+                    <div class="overlay">
+                        <h3>Hello</h3>
+                        <p>Lorem ipsum lorem ipsum</p>
+                        <a href="#">Check now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
     
-    <!-- Two-row section inside a box -->
-    <section class="two-container">
-        <div class="two">
-            <div class="container mx-auto px-4 py-8 text-center">
-                <h1 class="text-4xl font-extrabold mb-4">Meet PDFIntelliRead</h1>
-                <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
-            </div>
 
-            <div class="container mx-auto px-4 py-8 text-center">
-                <img src="{% static 'images/one.png' %}" alt="Logo" class="full-height-img">
-            </div>
-        </div>
-    </section>
+
+
+    
+  
     
   
     
@@ -409,8 +510,8 @@
 
   <!--Copyright section-->
   <div class="w-full bg-black/5 p-4 text-center">
-    © 2023 Copyright:
-    <a href="https://tw-elements.com/">TW Elements</a>
+    © 2024 Copyright:
+    <a href="#">AggieAI</a>
   </div>
 </footer>
 
