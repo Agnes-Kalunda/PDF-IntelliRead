@@ -321,14 +321,15 @@
               </div>
               <!-- Navbar links -->
               <div class="navbar-links">
-                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
-                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact</a>
+                  <a href="#explore" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
+                  <a href="#features" class="text-gray-700 font-semibold hover:text-blue-500">Features</a>
+                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Blog</a>
                   <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Date</a>
               </div>
               <!-- Button -->
               <div>
-                  <a href="#" class="btn">Button</a>
-              </div>
+                <a href="#" class="btn">Contact Us</a>
+            </div>
           </div>
       </nav>
   
@@ -337,11 +338,29 @@
           <div class="hero-content">
               <h1 class="hero-title">Welcome to <span>PDFIntelliRead</span></h1>
               <p class="hero-subtitle">Explore the power of PDF intelligence.</p>
-              <a href="#" class="btn">Try it</a>
+              <a href="#explore" class="btn">Explore </a>
           </div>
       </section>
   </div>
+
+
   
+  <section class="grid grid-cols-2 gap-4 p-8 bg-whitesmoke" id="explore" >
+    <div class="col-span-1 bg-white"> <!-- Adjust height as needed -->
+        <img src="{% static 'images/robot3.png' %}" alt="Logo" class="w-full h-full object-cover">
+    </div>
+    <div class="col-span-1 p-4 " style="background-color: ghostwhite; padding-top: 15%;">
+      <h1 style ="text-align: center;"class="text-4xl font-extrabold mb-4">Meet <div style="color: green;">PDFIntelliRead</div></h1>
+        <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
+        <div style="padding-top: 3%;">
+          <a href="#" class="btn">Try it</a>
+      </div>
+   
+      </div>
+    
+</section>
+
+
 
     <section class="two-container">
       <div class="two">
@@ -356,44 +375,7 @@
       </div>
   </section>
 
-  <section style="background-color: white; color: black;">
-    <div style="display: flex; justify-content: center; margin-top: 3%; margin-bottom: 0%;">
-      <h1 class="text-4xl font-extrabold mb-4">Features</h1>
-    </div>
-    <div id="card-area">
-        <div class="wrapper">
-            <div class="box-area">
-                <div class="box">
-                    <img src="{% static 'images/book.jpeg' %}" alt="Logo" class="">
-                    <div class="overlay">
-                        <h2>AI-Driven</h2>
-                        <p>Lorem ipsum lorem ipsum</p>
-                        
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img  src="{% static 'images/pixel.jpg' %}" alt="Logo" class="">
-                    <div class="overlay">
-                        <h2>User-Friendly</h2>
-                        <p>Lorem ipsum lorem ipsum</p>
-                        
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img  src="{% static 'images/down4.jpeg' %}" alt="Logo" class="">
-                    <div class="overlay">
-                        <h2>Free</h2>
-                        <p>Lorem ipsum lorem ipsum</p>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+ 
 
 
     
@@ -411,6 +393,52 @@
       <p>A 2014 science fiction psychological thriller film written and directed by Alex Garland.</p>
   </div> -->
 </section>
+
+
+<section style="background-color: white; color: black;" id="features">
+  <div style="display: flex; justify-content: center; margin-top: 3%; margin-bottom: 0%;">
+    <h1 class="text-4xl font-extrabold mb-4">Features</h1>
+  </div>
+  <div id="card-area">
+      <div class="wrapper">
+          <div class="box-area">
+              <div class="box">
+                  <img src="{% static 'images/book.jpeg' %}" alt="Logo" class="">
+                  <div class="overlay">
+                      <h2>AI-Driven</h2>
+                      <p>Lorem ipsum lorem ipsum</p>
+                      
+                  </div>
+              </div>
+
+              <div class="box">
+                  <img  src="{% static 'images/pixel.jpg' %}" alt="Logo" class="">
+                  <div class="overlay">
+                      <h2>User-Friendly</h2>
+                      <p>Lorem ipsum lorem ipsum</p>
+                      
+                  </div>
+              </div>
+
+              <div class="box">
+                  <img  src="{% static 'images/down4.jpeg' %}" alt="Logo" class="">
+                  <div class="overlay">
+                      <h2>Free</h2>
+                      <p>Lorem ipsum lorem ipsum</p>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+
+
 
 
 
