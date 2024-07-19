@@ -1,315 +1,8 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AggieAI</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Basic reset and body styling */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
-
-   
-
-        .background-container {
-    background-image: url('{% static "images/pixel.jpg" %}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    min-height: 100vh; /* Ensures it covers the viewport height */
-}
-
-        /* Navbar styling */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            margin-top: 2%;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 50px; /* Make the edges of the navbar circular */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px; /* Adjust padding as needed */
-            transition: background-color 0.5s ease; /* Transition for background color change */
-        }
-
-        /* Navbar content and layout */
-        .navbar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo styling */
-        .logo {
-            display: flex;
-            align-items: center;
-            border-radius: 50px;
-        }
-
-        /* Logo image styling */
-        .logo img {
-            width: 60px; 
-            height: 60px;
-            border-radius: 50%; /* Make the logo image circular */
-            object-fit: cover;
-        }
-
-        /* Navbar links styling */
-        .navbar-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        /* Navbar link styling */
-        .navbar-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        /* Navbar link hover effect */
-        .navbar-links a:hover {
-            color: #007bff; /* Adjust hover color */
-        }
-
-        /* Hero section styling */
-        .hero {
-            padding-top: 10%;
-            text-align: center;
-            color: #fff;
-            padding-top: 20%;
-        }
-
-        /* Hero content container */
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Hero title styling */
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        /* Hero subtitle styling */
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-
-        /* Button styling */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            margin-bottom: 2%;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Button hover effect */
-        .btn:hover {
-            background-color: #0056b3; 
-        }
-
-        .three {
-            display: grid;
-            grid-template-columns: 1fr 2fr; /* Two columns, now the second column is twice the width of the first */
-            gap: 20px; 
-            padding: 40px;
-            background-color: lightblue; 
-            opacity: 0;
-            transition: opacity 1s ease; 
-            
-        }
-
-        /* Make the image fill the entire column */
-        .full-height-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 30px;
-        }
-
-        span{
-            color: black;
-        }
-
-        .two-container {
-            background-color: lightblue;
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: auto; /* Adjust to fit content */
-            padding-top: 3%; 
-        
-        }
-
-        .two {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%; 
-            max-width: 800px; /* Max width to avoid stretching too much on large screens */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-        }
-
-        .loop-container {
-    display: flex;
-    animation: marquee 20s linear infinite;
-  }
-
-  .marquee {
-    display: inline-block;
-    white-space: nowrap;
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .gallery10{
-    background-color: lightblue;
-  }
-
-
-  footer{
-    background-color: lightblue;
-  }
-
-  .swiper-button-prev:after,
-        .swiper-rtl .swiper-button-next:after {
-            content: '' !important;
-        }
-
-        .swiper-button-next:after,
-        .swiper-rtl .swiper-button-prev:after {
-            content: '' !important;
-        }
-
-        .swiper-button-next svg,
-        .swiper-button-prev svg {
-            width: 24px !important;
-            height: 24px !important;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            position: relative !important;
-        }
-
-        .swiper-slide.swiper-slide-active {
-            --tw-border-opacity: 1 !important;
-            border-color: rgb(79 70 229 / var(--tw-border-opacity)) !important;
-        }
-
-        .swiper-slide.swiper-slide-active>.swiper-slide-active\:text-indigo-600 {
-            --tw-text-opacity: 1;
-            color: rgb(79 70 229 / var(--tw-text-opacity));
-        }
-
-        .swiper-slide.swiper-slide-active>.flex .grid .swiper-slide-active\:text-indigo-600 {
-            --tw-text-opacity: 1;
-            color: rgb(79 70 229 / var(--tw-text-opacity));
-        }
-        .wrapper {
-        padding: 10px 10%;
-    }
-
-    #card-area {
-        padding: 50px 0;
-    }
-
-    .box-area {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        grid-gap: 40px;
-        margin-top: 50px;
-    }
-
-    .box {
-        border-radius: 10px;
-        position: relative;
-        overflow: hidden;
-        width: 300px;
-        height: 350px;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .box img {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        display: block;
-        transition: transform 0.5s;
-    }
-
-    .overlay {
-        height: 0;
-        width: 100%;
-        background: linear-gradient(transparent, rgba(173, 216, 230, 0.8) 58%);
-        border-radius: 10px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 40px;
-        text-align: center;
-        font-size: 14px;
-        transition: height 0.5s;
-    }
-
-    .overlay h2 {
-      font-weight: bold;
-        
-        margin-bottom: 5px;
-        margin-top: 80%;
-        font-size: 30px;
-        letter-spacing: 2px;
-    }
-
-    .box:hover img {
-        transform: scale(1.2);
-    }
-
-    .box:hover .overlay {
-        height: 100%;
-    }
-
-    </style>
-</head>
-<body>
 
  
-
+{% block content %}
     <!-- Navbar section -->
     <div class="background-container">
       <nav class="navbar">
@@ -323,12 +16,12 @@
               <div class="navbar-links">
                   <a href="#explore" class="text-gray-700 font-semibold hover:text-blue-500">About</a>
                   <a href="#features" class="text-gray-700 font-semibold hover:text-blue-500">Features</a>
-                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Blog</a>
-                  <a href="#" class="text-gray-700 font-semibold hover:text-blue-500">Contact Us</a>
+                  <a href="#blog" class="text-gray-700 font-semibold hover:text-blue-500">Blog</a>
+                  <a href="#contact" class="text-gray-700 font-semibold hover:text-blue-500">Contact Us</a>
               </div>
               <!-- Button -->
               <div>
-                <a href="#" class="btn">Try it</a>
+                <a href="{% url 'upload_pdf' %}" class="btn">Try it</a>
             </div>
           </div>
       </nav>
@@ -353,7 +46,7 @@
       <h1 style ="text-align: center;"class="text-4xl font-extrabold mb-4">Meet <div style="color: green;">PDFIntelliRead</div></h1>
         <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
         <div style="padding-top: 3%;">
-          <a href="#" class="btn">Try it</a>
+          <a href="{% url 'upload_pdf' %}" class="btn">Try it</a>
       </div>
    
       </div>
@@ -375,260 +68,40 @@
       </div>
   </section>
 
- 
 
-
-    
-
-<section style="position: relative; width: 100%; height: 100vh; overflow: hidden;">
-  <iframe 
-      src="https://www.youtube.com/embed/s9xk77X4m5c?autoplay=1&mute=1&loop=1&playlist=s9xk77X4m5c" 
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;" 
-      frameborder="0" 
-      allow="autoplay; fullscreen" 
-      allowfullscreen>
-  </iframe>
-  <!-- <div style="position: relative; z-index: 1; color: white; text-align: center; padding-top: 50vh; background: rgba(0, 0, 0, 0.5);">
-      <h1>Ex Machina</h1>
-      <p>A 2014 science fiction psychological thriller film written and directed by Alex Garland.</p>
-  </div> -->
-</section>
-
-
-<section style="background-color: white; color: black;" id="features">
-  <div style="display: flex; justify-content: center; margin-top: 3%; margin-bottom: 0%;">
+  <section style="background-color: white; color: black;" id="features">
+    <div style="display: flex; justify-content: center; margin-top: 3%; margin-bottom: 0%;">
     <h1 class="text-4xl font-extrabold mb-4">Features</h1>
-  </div>
-  <div id="card-area">
-      <div class="wrapper">
-          <div class="box-area">
-              <div class="box">
-                  <img src="{% static 'images/book.jpeg' %}" alt="Logo" class="">
-                  <div class="overlay">
-                      <h2>AI-Driven</h2>
-                      <p>Lorem ipsum lorem ipsum</p>
-                      
-                  </div>
-              </div>
-
-              <div class="box">
-                  <img  src="{% static 'images/pixel.jpg' %}" alt="Logo" class="">
-                  <div class="overlay">
-                      <h2>User-Friendly</h2>
-                      <p>Lorem ipsum lorem ipsum</p>
-                      
-                  </div>
-              </div>
-
-              <div class="box">
-                  <img  src="{% static 'images/down4.jpeg' %}" alt="Logo" class="">
-                  <div class="overlay">
-                      <h2>Free</h2>
-                      <p>Lorem ipsum lorem ipsum</p>
-                      
-                  </div>
-              </div>
+    </div>
+    <div id="card-area">
+    <div class="wrapper">
+      <div class="box-area">
+        <div class="box">
+          <img src="{% static 'images/book.jpeg' %}" alt="Logo" class="">
+          <div class="overlay">
+            <h2>AI-Driven</h2>
+            <p>Lorem ipsum lorem ipsum</p>
           </div>
-      </div>
-  </div>
-</section>
-<section class="bg-gray-100 py-16">
-  <div id="blog" class="container mx-auto">
-    <div class="text-center mb-12">
-      <h4 class="text-3xl font-bold">Blog</h4>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white rounded shadow p-4">
-        <img src="https://r.mobirisesite.com/533449/assets/images/photo-1498050108023-c5249f4df085.jpeg" alt="Mobirise Website Builder" class="mb-4">
-        <h5 class="text-lg font-semibold mb-2">How to deploy Machine Learning Models on Django</h5>
-        <div class="flex justify-center">
-          <a href="https://medium.com/@AgnesMbiti/deploying-machine-learning-models-on-django-b51fd0b53593" class="btn btn-primary" target="_blank">Read More</a>
         </div>
-      </div>
-      <div class="bg-white rounded shadow p-4">
-        <img src="https://r.mobirisesite.com/533449/assets/images/photo-1485827404703-89b55fcc595e.jpeg" alt="Mobirise Website Builder" class="mb-4">
-        <h5 class="text-lg font-semibold mb-2">Leveraging Python, OpenAI API, and Rasa Framework</h5>
-        <div class="flex justify-center">
-          <a href="https://medium.com/@AgnesMbiti/leveraging-python-openai-api-and-rasa-framework-for-a-custom-ai-powered-chatbot-571ac6b09e6e" class="btn btn-primary" target="_blank">Read More</a>
+        <div class="box">
+          <img src="{% static 'images/pixel.jpg' %}" alt="Logo" class="">
+          <div class="overlay">
+            <h2>User-Friendly</h2>
+            <p>Lorem ipsum lorem ipsum</p>
+          </div>
         </div>
-      </div>
-      <div class="bg-white rounded shadow p-4">
-        <img src="https://r.mobirisesite.com/533449/assets/images/photo-1488229297570-58520851e868.jpeg" alt="Mobirise Website Builder" class="mb-4">
-        <h5 class="text-lg font-semibold mb-2">AI-Powered Powerpoint using Django and OpenAI</h5>
-        <div class="flex justify-center">
-          <a href="https://medium.com/@AgnesMbiti/how-to-build-an-ai-powered-powerpoint-presentation-django-openai-68972e3131e0" class="btn btn-primary" target="_blank">Read More</a>
-        </div>
-      </div>
-      <div class="bg-white rounded shadow p-4">
-        <img src="https://r.mobirisesite.com/533449/assets/images/photo-1487058792275-0ad4aaf24ca7.jpeg" alt="Mobirise Website Builder" class="mb-4">
-        <h5 class="text-lg font-semibold mb-2">Building an online Python code editor using Ace.</h5>
-        <div class="flex justify-center">
-          <a href="https://medium.com/@AgnesMbiti/introduction-ede9e9af903a" class="btn btn-primary" target="_blank">Read More</a>
+        <div class="box">
+          <img src="{% static 'images/down4.jpeg' %}" alt="Logo" class="">
+          <div class="overlay">
+            <h2>Free</h2>
+            <p>Lorem ipsum lorem ipsum</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  
-    
-  
-    
-<!--Footer container-->
-<footer
-  class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-neutral-700 dark:text-white">
-  <div class="container pt-9">
-    <!-- Social media icons container -->
-    <div class="mb-6 flex justify-center space-x-2">
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="[&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 320 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 512 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 488 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 448 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 448 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-        data-twe-ripple-init>
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 496 512">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-            <path
-              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-          </svg>
-        </span>
-      </a>
     </div>
-  </div>
+    </section>
 
-  <!--Copyright section-->
-  <div class="w-full bg-black/5 p-4 text-center">
-    © 2024 Copyright:
-    <a href="#">AggieAI</a>
-  </div>
-</footer>
+{% endblock %}
 
 
-
-
-  
-    
-    
-    
-
-      
-      
-
-<script>
-    // JavaScript to handle the fade-in effect on scroll for .three section
-    document.addEventListener('scroll', function() {
-        var threeSection = document.querySelector('.three');
-        var scrollPosition = window.scrollY;
-
-        if (scrollPosition > 200) { 
-            threeSection.style.opacity = '1';
-        } else {
-            threeSection.style.opacity = '0';
-        }
-    });
-   
-</script>
-
-</body>
-</html>

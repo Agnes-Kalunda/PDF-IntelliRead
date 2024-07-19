@@ -1,10 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<h1>Upload PDF</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
 
-
-    <h1>Welcome to PDF QA</h1>
-    <a href="{% url 'upload_pdf' %}">Upload a PDF</a>
-
-
+<section class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 bg-blue-100 rounded-lg">
+            <h2 class="text-xl font-bold">PDF Content</h2>
+            <div>{{ pdf_text|safe }}</div>
+        </div>
+        <div class="p-4 bg-green-100 rounded-lg">
+            <h1>Ask a Question</h1>
+            <form method="post" action="{% url 'ask_question' %}">
+                {% csrf_token %}
+                <label for="question">Question:</label>
+                <input type="text" id="question" name="question" class="w-full p-2 border border-gray-300 rounded">
+                <button type="submit" class="mt-2 p-2 bg-blue-500 text-white rounded">Ask</button>
+            </form>
+            {% if question %}
+            <h2 class="mt-4 text-lg font-bold">Question: {{ question }}</h2>
+            <h3 class="mt-2 text-md">Answer: {{ response }}</h3>
+            {% endif %}
+        </div>
+    </div>
+</section>
 {% endblock %}

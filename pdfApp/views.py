@@ -6,18 +6,17 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from .forms import PDFUploadForm
 from django.conf import settings
-import fitz  # PyMuPDF
 import pdfplumber
 from dotenv import load_dotenv
-
-
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def index(request):
-    return render(request, 'index.html')
-
+    pdf_text = request.session.get('pdf_text', '')
+    question = request.session.get('question', '')
+    response = request.session.get('response', '')
+    return render(request, 'index.html', {'pdf_text': pdf_text, 'question': question, 'response': response})
 
 def extract_text_from_pdf(file_path):
     text = ""
@@ -39,10 +38,10 @@ def upload_pdf(request):
             file_path = fs.path(filename)
             pdf_text = extract_text_from_pdf(file_path)
             request.session['pdf_text'] = pdf_text  # Store PDF text in session
-            return redirect('ask_question')
+            return render(request, 'pdf.html', {'form': form, 'pdf_text': pdf_text})
     else:
         form = PDFUploadForm()
-    return render(request, 'upload.html', {'form': form})
+    return render(request, 'pdf.html', {'form': form})
 
 
 
@@ -63,9 +62,9 @@ def ask_question(request):
                     temperature=0.5
                 )
                 answer = response['choices'][0]['message']['content'].strip()
-                return JsonResponse({'answer': answer})
+                request.session['question'] = question
+                request.session['response'] = answer
+                return redirect('index')
             except Exception as e:
                 return JsonResponse({'error': str(e)}, status=500)
-    elif request.method == 'GET':
-        return render(request, 'ask.html')
     return HttpResponseBadRequest('Invalid request method')
