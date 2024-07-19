@@ -6,9 +6,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('upload/', views.upload_pdf, name='upload_pdf'),
-    path('ask/', views.ask_question, name='ask_question'),
+    path('ask/', views.upload_pdf, name='ask_question'),  # Reuse the same view
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

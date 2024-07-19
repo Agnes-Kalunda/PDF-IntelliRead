@@ -17,16 +17,26 @@
         </div>
         <div class="p-4 bg-green-100 rounded-lg">
             <h1>Ask a Question</h1>
-            <form method="post" action="{% url 'ask_question' %}">
-                {% csrf_token %}
-                <label for="question">Question:</label>
-                <input type="text" id="question" name="question" class="w-full p-2 border border-gray-300 rounded">
-                <button type="submit" class="mt-2 p-2 bg-blue-500 text-white rounded">Ask</button>
-            </form>
-            {% if question %}
-            <h2 class="mt-4 text-lg font-bold">Question: {{ question }}</h2>
-            <h3 class="mt-2 text-md">Answer: {{ response }}</h3>
-            {% endif %}
+            <div class="space-y-4">
+                <form method="post" action="{% url 'ask_question' %}">
+                    {% csrf_token %}
+                    <label for="question" class="block text-sm font-medium text-gray-700">Question:</label>
+                    <input type="text" id="question" name="question" class="w-full p-2 border border-gray-300 rounded mt-1">
+                    <button type="submit" class="mt-2 p-2 bg-blue-500 text-white rounded">Ask</button>
+                </form>
+                {% if question and response %}
+                <div class="mt-4 space-y-2">
+                    <div class="bg-gray-200 p-4 rounded-lg">
+                        <h2 class="text-lg font-bold">Question:</h2>
+                        <p class="text-md">{{ question }}</p>
+                    </div>
+                    <div class="bg-blue-200 p-4 rounded-lg">
+                        <h2 class="text-lg font-bold">Answer:</h2>
+                        <p class="text-md">{{ response }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>
