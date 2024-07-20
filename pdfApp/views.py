@@ -1,12 +1,12 @@
 import os
 import openai
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.storage import FileSystemStorage
-from .forms import PDFUploadForm
 from django.conf import settings
-import pdfplumber
+from .forms import PDFUploadForm
 from dotenv import load_dotenv
+from pdf2image import convert_from_path
+import pdfplumber
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -24,16 +24,30 @@ def extract_text_from_pdf(file_path):
         print(f"Error reading PDF file: {e}")
     return text
 
+def convert_pdf_to_images(file_path):
+    images = []
+    try:
+        pages = convert_from_path(file_path, dpi=200)
+        for i, page in enumerate(pages):
+            image_path = os.path.join(settings.MEDIA_ROOT, f'pdf_page_{i}.png')
+            page.save(image_path, 'PNG')
+            images.append(settings.MEDIA_URL + f'pdf_page_{i}.png')
+    except Exception as e:
+        print(f"Error converting PDF to images: {e}")
+    return images
+
 def upload_pdf(request):
     if request.method == 'GET':
-        # Clear the session data for pdf_text on a GET request
-        if 'pdf_text' in request.session:
-            del request.session['pdf_text']
+        # Clear the session data for pdf_text and pdf_images on a GET request
+        request.session.pop('pdf_text', None)
+        request.session.pop('pdf_images', None)
         pdf_text = ''
+        pdf_images = []
         question = None
         response_text = None
     elif request.method == 'POST':
         pdf_text = request.session.get('pdf_text', '')
+        pdf_images = request.session.get('pdf_images', [])
         question = None
         response_text = None
 
@@ -45,10 +59,13 @@ def upload_pdf(request):
                 filename = fs.save(file.name, file)
                 file_path = fs.path(filename)
                 pdf_text = extract_text_from_pdf(file_path)
+                pdf_images = convert_pdf_to_images(file_path)
                 request.session['pdf_text'] = pdf_text  # Store PDF text in session
+                request.session['pdf_images'] = pdf_images  # Store PDF images in session
         else:
             question = request.POST.get('question')
             pdf_text = request.session.get('pdf_text', '')
+            pdf_images = request.session.get('pdf_images', [])
             if question and pdf_text:
                 try:
                     response = openai.ChatCompletion.create(
@@ -68,6 +85,7 @@ def upload_pdf(request):
     return render(request, 'pdf.html', {
         'form': form,
         'pdf_text': pdf_text,
+        'pdf_images': pdf_images,
         'question': question,
         'response': response_text,
     })

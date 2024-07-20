@@ -27,7 +27,6 @@
     </nav>
 
     <!-- Upload Form -->
-   
     <form method="post" enctype="multipart/form-data" class="mb-8 bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
         {% csrf_token %}
         {{ form.as_p }}
@@ -44,7 +43,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="p-4 bg-blue-100 rounded-lg">
                 <h2 class="text-xl font-bold mb-4">PDF Content</h2>
-                <div>{{ pdf_text|safe }}</div>
+                {% for image in pdf_images %}
+                    <img src="{{ image }}" alt="PDF page" class="mb-4">
+                {% endfor %}
             </div>
             <div class="p-4 bg-green-100 rounded-lg">
                 <h1 class="text-xl font-bold mb-4">Ask a Question</h1>
