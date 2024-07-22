@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zl&3wdbq5&+^tc+x8odj^ort=(zav$%$0r*pz73@xejxf^k5ca
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["pdf-intelliread.onrender.com"]
+ALLOWED_HOSTS = ["pdf-intelliread-1.onrender.com"]
 
 
 # Application definition
