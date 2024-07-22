@@ -26,63 +26,148 @@
     min-height: 100vh; /* Ensures it covers the viewport height */
 }
 
-        /* Navbar styling */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            margin-top: 2%;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 50px; /* Make the edges of the navbar circular */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px; /* Adjust padding as needed */
-            transition: background-color 0.5s ease; /* Transition for background color change */
-        }
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 2%;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    transition: background-color 0.5s ease;
+}
 
-        /* Navbar content and layout */
-        .navbar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Navbar content and layout */
+.navbar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        /* Logo styling */
-        .logo {
-            display: flex;
-            align-items: center;
-            border-radius: 50px;
-        }
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+}
 
-        /* Logo image styling */
-        .logo img {
-            width: 60px; 
-            height: 60px;
-            border-radius: 50%; /* Make the logo image circular */
-            object-fit: cover;
-        }
+/* Logo image styling */
+.logo img {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-        /* Navbar links styling */
-        .navbar-links {
-            display: flex;
-            gap: 20px;
-        }
+/* Navbar links styling */
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
 
-        /* Navbar link styling */
-        .navbar-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+/* Navbar link styling */
+.navbar-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
 
-        /* Navbar link hover effect */
-        .navbar-links a:hover {
-            color: #007bff; /* Adjust hover color */
-        }
+/* Navbar link hover effect */
+.navbar-links a:hover {
+    color: #007bff;
+}
+
+/* Toggle button for small screens */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background-color: #333;
+    height: 2px;
+    width: 25px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle-label span::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+}
+
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
+
+/* Change burger to X when active */
+.nav-toggle:checked + .nav-toggle-label span {
+    background-color: transparent;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+        display: none; /* Hide by default */
+    }
+
+    .navbar-links a {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .nav-toggle-label {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+
+    .nav-toggle:checked ~ .navbar-links {
+        display: flex; /* Show when checked */
+    }
+}
 
         /* Hero section styling */
         .hero {
