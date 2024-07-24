@@ -42,20 +42,25 @@
 
 
   
-  <section class="grid grid-cols-2 gap-4 p-8 bg-whitesmoke" id="explore" >
-    <div class="col-span-1 bg-white"> 
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-whitesmoke" id="explore">
+    <!-- Image Section -->
+    <div class="order-2 md:order-1 bg-white">
         <img src="{% static 'images/robot3.png' %}" alt="Logo" class="w-full h-full object-cover">
     </div>
-    <div class="col-span-1 p-4 " style="background-color: ghostwhite; padding-top: 15%;">
-      <h1 style ="text-align: center;"class="text-4xl font-extrabold mb-4">Meet <div style="color: green;">PDFIntelliRead</div></h1>
-        <p>Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.</p>
+    <!-- Content Section -->
+    <div class="order-1 md:order-2 p-4" style="background-color: ghostwhite; padding-top: 15%;">
+        <h1 style="text-align: center;" class="text-4xl font-extrabold mb-4">
+            Meet <div style="color: green;">PDFIntelliRead</div>
+        </h1>
+        <p>
+            Meet PDFIntelliRead. Step into the realm of AI sorcery with our mastermind, Dr. Neural Net. With a sprinkle of code and a dash of innovation, Dr. Neural Net has been conjuring AI wonders for over a decade. Dive deep into the enchanted world of artificial intelligence as Dr. Neural Net shares the secrets behind his spellbinding creations. From neural networks to machine learning spells, prepare to be mesmerized by the magic of technology. Join us on a journey where algorithms dance and data sings, all under the guidance of the one and only AI Sorcerer, Dr. Neural Net.
+        </p>
         <div style="padding-top: 3%;">
-          <a href="{% url 'upload_pdf' %}" class="btn">Try it</a>
-      </div>
-   
-      </div>
-    
+            <a href="{% url 'upload_pdf' %}" class="btn">Try it</a>
+        </div>
+    </div>
 </section>
+
 
 
 
