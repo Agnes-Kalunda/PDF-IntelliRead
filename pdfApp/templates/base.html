@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AggieAI</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
     <style>
         /* Basic reset and body styling */
         body {
@@ -26,198 +27,110 @@
     min-height: 100vh; /* Ensures it covers the viewport height */
 }
 /* Navbar styling */
-.navbar {
-    position: fixed;
-    top: 0;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.3rem 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(50px);
+  z-index: -1;
+}
+
+.icons {
+  position: absolute;
+  right: 5%;
+  font-size: 2.8rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .header {
+    padding: 1.3rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .icons {
+    display: inline-flex;
+  }
+
+  #check:checked ~ .icons #menu-icon {
+    display: none;
+  }
+
+  #check:not(:checked) ~ .icons #close-icon {
+    display: none;
+  }
+
+  #check:checked ~ .icons #close-icon {
+    display: inline;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
-    margin-top: 2%;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    transition: background-color 0.5s ease;
-}
+    height: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: 0.3s ease;
+  }
 
-/* Navbar content and layout */
-.navbar-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+  #check:checked ~ .navbar {
+    height: 17.7rem;
+  }
 
-/* Logo styling */
-.logo {
-    display: flex;
-    align-items: center;
-    border-radius: 50px;
-}
-
-/* Logo image styling */
-.logo img {
-    width: 60px; 
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Navbar links styling */
-.navbar-links {
-    display: flex;
-    gap: 20px;
-}
-
-/* Navbar link styling */
-.navbar-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-/* Navbar link hover effect */
-.navbar-links a:hover {
-    color: #007bff;
-}
-
-/* Toggle button for small screens */
-.nav-toggle {
-    display: none;
-}
-
-.nav-toggle-label {
-    display: none;
-    cursor: pointer;
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
+  .navbar a {
     display: block;
-    background-color: #333;
-    height: 2px;
-    width: 25px;
-    border-radius: 2px;
-    position: relative;
-    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: 0.3s ease;
+  }
+
+  #check:checked ~ .navbar a {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: calc(0.15s * var(--i));
+  }
 }
 
-.nav-toggle-label span::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 0;
+.logo {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.nav-toggle-label span::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 0;
+.navbar a {
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 2.5rem;
 }
-
-/* Change burger to X when active */
-.nav-toggle:checked + .nav-toggle-label span {
-    background-color: transparent;
-}
-
-.nav-toggle:checked + .nav-toggle-label span::before {
-    top: 0;
-    transform: rotate(45deg);
-}
-
-.nav-toggle:checked + .nav-toggle-label span::after {
-    top: 0;
-    transform: rotate(-45deg);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .navbar-content {
-        flex-direction: column;
-        align-items: flex-start;
-        position: relative;
-        padding: 10px; /* Adjust padding for smaller screens */
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        margin-top: 10px;
-        display: none; /* Hide by default */
-    }
-
-    .navbar-links a {
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-    }
-
-    .nav-toggle-label {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 10px; /* Adjust position if needed */
-    }
-
-    .nav-toggle:checked ~ .navbar-links {
-        display: flex; /* Show when checked */
-    }
-}
-
-
-
-
-/* Base styles */
-#explore {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 2rem;
-    background-color: #f5f5f5;
-}
-
-/* Text content styling */
-.text-content {
-    background-color: white;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Image content styling */
-.image-content {
-    background-color: ghostwhite;
-    padding-top: 15%;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    #explore {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .text-content {
-        order: 2; /* Move text content to the bottom */
-    }
-
-    .image-content {
-        order: 1; /* Move image content to the top */
-        padding-top: 0;
-    }
-
-    .image-content img {
-        max-width: 100%; /* Ensure the image scales properly */
-        height: auto;
-    }
-}
-
 
         /* Hero section styling */
         .hero {
