@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zl&3wdbq5&+^tc+x8odj^ort=(zav$%$0r*pz73@xejxf^k5ca
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["pdf-intelliread-1.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["pdf-intelliread-1.onrender.com", "127.0.0.1" ,"localhost"]
 
 # Application definition
 
@@ -46,6 +46,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -117,16 +118,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Directory for additional static files
-]
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Directory where static files will be collected
 
-# Media files (uploaded files)
+# This production code might break development mode, so we check whether we're in DEBUG mode
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # Directory where uploaded files will be stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
