@@ -6,17 +6,18 @@
     <!-- Navbar section -->
     <div class="background-container">
       <header class="header">
-        <a href="#" class="logo">Logo</a>
-      
+        <div class="logo">
+          <img src="{% static 'images/profilee.png' %}" alt="Logo">
+          <span>AggieAI</span>
+        </div>
+        
         <input type="checkbox" id="check">
         <label for="check" class="icons">
-         
-          <box-icon name='menu' id="menu-icon"></box-icon>
-        
-          <box-icon name='x' id="close-icon"></box-icon>
+          <i class="bx bx-menu" id="menu-icon"></i>
+          <i class="bx bx-x" id="close-icon"></i>
         </label>
-      
-        <nav class="navbar">
+        
+        <nav class="navbar" id="navbar">
           <a href="#explore">About</a>
           <a href="#features">Features</a>
           <a href="#blog">Blog</a>
@@ -24,6 +25,7 @@
           <a href="{% url 'upload_pdf' %}">Try it</a>
         </nav>
       </header>
+    
       
   
       <!-- Hero section -->

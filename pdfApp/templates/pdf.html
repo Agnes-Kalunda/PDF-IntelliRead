@@ -7,25 +7,29 @@
     <div class="h-16"></div>
 
     <!-- Navbar -->
+ 
+
     <header class="header">
-        <a href="#" class="logo">Logo</a>
+        <!-- <a href="#" class="logo">Logo</a> -->
+
+        <div class="logo">
+            <img src="{% static 'images/profilee.png' %}" alt="Logo">
+            <span class="ml-2 text-gray-700 font-semibold text-lg sm:text-xl md:text-2xl">AggieAI</span>
+        </div>
       
         <input type="checkbox" id="check">
         <label for="check" class="icons">
-         
-          <box-icon name='menu' id="menu-icon"></box-icon>
-        
-          <box-icon name='x' id="close-icon"></box-icon>
+          <i class="bx bx-menu" id="menu-icon"></i>
+          <i class="bx bx-x" id="close-icon"></i>
         </label>
       
-        <nav class="navbar">
+        <nav class="navbar" id="navbar">
           <a href="{% url 'index' %}">Home</a>
           <a href="#blog">Blog</a>
           <a href="#contact">Contact Us</a>
-          
         </nav>
       </header>
-    href="{% url 'index' %}"
+
     <!-- Upload Form -->
     <form method="post" enctype="multipart/form-data" class="mb-8 bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
         {% csrf_token %}
